@@ -11,3 +11,9 @@
 
 int buttonPressed = 0;
 int isOn = 0;
+
+void GPIO_Init(void) {
+}
+
+int main(void) {
+}

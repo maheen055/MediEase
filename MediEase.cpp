@@ -8,3 +8,6 @@
 #define BUZZER_PORT GPIOB
 #define LED_PIN GPIO_PIN_5
 #define LED_PORT GPIOA
+
+int buttonPressed = 0;
+int isOn = 0;

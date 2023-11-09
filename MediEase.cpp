@@ -35,4 +35,40 @@ void GPIO_Init(void) {
 }
 
 int main(void) {
+          // Initialize HAL Library
+    HAL_Init();
+
+    // Configure the system clock
+    SystemClock_Config();
+
+    // Initialize GPIO
+    GPIO_Init();
+
+    while (1) {
+        // Check if the button is pressed
+        if (HAL_GPIO_ReadPin(BUTTON_PORT, BUTTON_PIN) == GPIO_PIN_RESET) {
+            // Button is pressed
+            if (!buttonPressed) {
+                // Button press detected
+                buttonPressed = 1;
+
+                // Toggle the state
+                isOn = !isOn;
+
+                // Move the motor 20 degrees
+                if (isOn) {
+                    HAL_GPIO_WritePin(MOTOR_PORT, MOTOR_PIN, GPIO_PIN_SET);
+                    HAL_Delay(1000); // Delay for 1 second (adjust as needed)
+                    HAL_GPIO_WritePin(MOTOR_PORT, MOTOR_PIN, GPIO_PIN_RESET);
+                }
+
+                // Toggle the buzzer and LED
+                HAL_GPIO_WritePin(BUZZER_PORT, BUZZER_PIN, isOn ? GPIO_PIN_SET : GPIO_PIN_RESET);
+                HAL_GPIO_WritePin(LED_PORT, LED_PIN, isOn ? GPIO_PIN_SET : GPIO_PIN_RESET);
+            }
+        } else {
+            buttonPressed = 0;
+        }
+    }
+
 }

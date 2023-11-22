@@ -1,4 +1,4 @@
-#include "stm32f4xx_hal.h"
+#include "main.h"
 
 #define BUTTON_PIN GPIO_PIN_0
 #define BUTTON_PORT GPIOA

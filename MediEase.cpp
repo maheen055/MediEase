@@ -1,5 +1,7 @@
 #include "main.h"
 
+void SystemClock_Config(void);
+
 #define BUTTON_PIN GPIO_PIN_0
 #define BUTTON_PORT GPIOA
 #define MOTOR_PIN GPIO_PIN_8
